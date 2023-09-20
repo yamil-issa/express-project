@@ -30,9 +30,14 @@ export class UserJSONService implements UserService {
         this.saveUsersToFile();
         return newUser;
     }
-
+   
     getById(id: number): User | null {
         const foundUser = this.users.find(user => user.id === id);
-        return foundUser || null;
+        if (!foundUser) {
+           throw new Error('User not found');
+        }else{
+            return foundUser;
+        }
+       
     }
 }
